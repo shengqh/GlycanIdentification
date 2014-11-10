@@ -1,0 +1,6 @@
+No.	N-GLYCAN	Man Number	GlcNac Number	Fuc Number	NeuNacNumber	Gal Number	Total Unit Number	Mass
+
+1	GlcNAc4-1GlcNAc4-1Man(3-1Man2-1Man2-1Man,6-1Man(3-1Man2-1Man,6-1Man2-1Man))	9	2	0	0	0	11	1864.633972	
+2	GlcNAc(6-1Fuc,4-1GlcNAc4-1Man(3-1Man2-1Man2-1Man,6-1Man(3-1Man2-1Man,6-1Man2-1Man)))	9	2	1	0	0	12	2010.691879	
+3	GlcNAc4-1GlcNAc4-1Man(4-1GlcNAc,3-1Man2-1Man2-1Man,6-1Man(3-1Man2-1Man,6-1Man2-1Man))	9	3	0	0	0	12	2067.713379	
+4	GlcNAc(6-1Fuc,4-1GlcNAc4-1Man(4-1GlcNAc,3-1Man2-1Man2-1Man,6-1Man(3-1Man2-1Man,6-1Man2-1Man)))	9	3	1	0	0	13	2213.771286	

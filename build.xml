@@ -1,0 +1,70 @@
+<project name="glycanidentification" default="jar">
+	<!-- properies -->
+	<property name="src" value="src"/>
+	<property name="test" value="test"/>
+	<property name="report.dir" value="report"/>
+  <property name="library.dir" value="lib"/>
+	<property name="build" value="bin"/>
+	<property name="dist.dir" value="dist"/>
+  <property name="jar.dist.dir" value="jar-dist"/>
+	
+	<!-- 定义classpath -->
+	<path id="build.classpath">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement path="${build}" />
+	</path>
+	
+	<target name="test" description="run junit test">
+		<delete dir="${report.dir}"/>
+		<mkdir dir="${report.dir}"/>
+		<junit dir="." fork="true" printsummary="on" haltonfailure="false"
+			failureproperty="tests.failed" showoutput="true">
+			<classpath refid="build.classpath"/>
+			<formatter type="brief"/>
+			<batchtest todir="${report.dir}">
+				<fileset dir="${build}">
+					<include name="**/*Test.*"/>
+					<include name="**/Test*.*"/>
+				</fileset>
+			</batchtest>
+		</junit>
+		<fail if="tests.failed">
+			*********************************************************** **** One or
+			more tests failed! Check the output ... ****
+			*********************************************************** </fail>
+	</target>
+	
+	<target name="jar" description="build release jar">
+    <delete dir="${dist.dir}" />
+    <mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${ant.project.name}.jar">
+			<fileset dir="${build}">
+				<exclude name="*.Manifest"/>
+				<exclude name="**/*Test.*"/>
+				<exclude name="**/Test*.*"/>
+				<exclude name="**/test*.*"/>
+			</fileset>
+		</jar>
+		<copy todir="../glycanview/lib">
+			<fileset dir="${dist.dir}">
+				<include name="${ant.project.name}.jar"/>
+			</fileset>
+		</copy>
+		<delete dir="${jar.dist.dir}/bin" />
+		<mkdir dir="${jar.dist.dir}/bin" />
+		<copy todir="${jar.dist.dir}/bin">
+			<fileset dir="${dist.dir}">
+				<include name="${ant.project.name}.jar"/>
+			</fileset>
+		</copy>
+    <delete dir="${jar.dist.dir}/lib" />
+    <mkdir dir="${jar.dist.dir}/lib" />
+    <copy todir="${jar.dist.dir}/lib">
+      <fileset dir="${library.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>
+	</target>
+</project>
